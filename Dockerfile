@@ -4,6 +4,4 @@ WORKDIR /tests
 
 COPY . .
 
-RUN mvn install
-
 CMD mvn -Dtest=SimpleTest test

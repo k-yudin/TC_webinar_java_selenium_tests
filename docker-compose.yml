@@ -13,7 +13,7 @@ services:
   test_runner:
     build:
       context: .
-      dockerfile: .
+      dockerfile: ./Dockerfile
     image: tests_run
     container_name: tests_works
     network_mode: "host"
