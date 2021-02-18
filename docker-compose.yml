@@ -5,8 +5,6 @@ services:
   selenium:
     image: selenium/standalone-chrome:3.141.59
     container_name: selenium_server_works
-    ports:
-      - "4444:4444"
     logging:
       driver: none
 
@@ -16,4 +14,5 @@ services:
       dockerfile: ./Dockerfile
     image: tests_run
     container_name: tests_works
-    network_mode: "host"
+    depends_on: 
+      - selenium

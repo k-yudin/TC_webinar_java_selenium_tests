@@ -8,7 +8,7 @@ then
 ```mvn -Dtest=SimpleTest test```
 
 ## Report
-To generate the report, run ```allure-results/```
+To generate the report, run ```allure serve allure-results/```
 
 More about Allure implementation for pytest is [here](https://docs.qameta.io/allure/#_testng).
 
