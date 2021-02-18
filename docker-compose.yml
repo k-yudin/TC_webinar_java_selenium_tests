@@ -16,3 +16,5 @@ services:
     container_name: tests_works
     depends_on: 
       - selenium
+    volumes:
+      - ./allure-results:/tests/target/allure-results
