@@ -6,6 +6,4 @@ WORKDIR /tests
 
 COPY . .
 
-RUN echo "Downloading maven dependencies..." && mvn dependency:resolve -q && echo "Download complete"
-
 CMD mvn -Dtest=SimpleTest test
