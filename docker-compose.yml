@@ -12,8 +12,8 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    image: tests_run
-    container_name: tests_works
+    image: java_tests_run
+    container_name: java_tests_works
     depends_on: 
       - selenium
     volumes:
