@@ -1,3 +1,4 @@
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
@@ -11,7 +12,10 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Epic("This is a simple test")
 public class SimpleTest {
@@ -30,16 +34,38 @@ public class SimpleTest {
     @Description("We open some page and making a screenshot")
     public void simpleTest() throws Exception {
         this.driver.get("https://learnqa.ru/");
-        this.takeScreenshot();
+        this.attachScreenshot(
+                this.takeScreenshot("screenshot.png")
+        );
     }
 
     @Step("Taking a screenshot")
-    private void takeScreenshot() throws Exception {
+    private String takeScreenshot(String name) throws Exception {
         TakesScreenshot ts = (TakesScreenshot)this.driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(source, new File("./screenshot.png"));
-        System.out.println("The Screenshot is taken...");
+        String path = System.getProperty("user.dir") + "/" + name + "_screenshot.png";
+        try {
+            FileUtils.copyFile(source, new File(path));
+            System.out.println("The Screenshot is taken: " + path);
+        } catch (Exception e) {
+            System.out.println("Cannot take a screenshot. Error: " + e.getMessage());
+        }
 
+        return path;
+    }
+
+    @Attachment
+    private byte[] attachScreenshot(String path)
+    {
+        byte[] bytes = new byte[0];
+
+        try {
+            bytes = Files.readAllBytes(Paths.get(path));
+        } catch (IOException e) {
+            System.out.println("Cannot get bytes from screenshot. Error: " + e.getMessage());
+        }
+
+        return bytes;
     }
 
     @AfterTest
