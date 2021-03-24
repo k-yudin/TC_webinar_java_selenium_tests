@@ -35,7 +35,7 @@ public class SimpleTest {
     public void simpleTest() throws Exception {
         this.driver.get("https://learnqa.ru/");
         this.attachScreenshot(
-                this.takeScreenshot("screenshot.png")
+                this.takeScreenshot("learnqa_main")
         );
     }
 
