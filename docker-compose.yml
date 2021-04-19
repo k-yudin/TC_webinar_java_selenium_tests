@@ -3,7 +3,7 @@ version: "3"
 
 services:
   selenium:
-    image: selenium/standalone-chrome:88.0.4324.150
+    image: selenium/standalone-chrome:89.0
     container_name: selenium_server_works
     logging:
       driver: none
